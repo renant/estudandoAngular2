@@ -1,14 +1,31 @@
 <h1>{{title}}</h1>
 <hr>
-<div class="col-md-12">
-    <div class="form-group">
-        <label>Marca: </label>
-        <input type="text" class="form-control" [(ngModel)]="car.brand" placeholder="Marca do veículo" />
+<div class="col-md-6">
+    <ul class="list-group">
+        <li *ngFor="#car of cars" (click)="onSelect(car)" class="list-group-item">
+            <span [class.selected]="car === selectedCar" class="badge">{{car.id}}</span>
+            <a href="#">{{car.brand}} - {{car.model}}</a>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="selectedCar" >
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Marca: </label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCar.brand" placeholder="Marca do veículo" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Modelo: </label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCar.model" placeholder="Modelo do veículo" />
+        </div>
     </div>
 </div>
-<div class="col-md-12">
-    <div class="form-group">
-        <label>Modelo: </label>
-        <input type="text" class="form-control" [(ngModel)]="car.model" placeholder="Modelo do veículo" />
-    </div>
-</div>
+
+<style>
+    .selected{
+        background: orangered
+    }
+</style>
